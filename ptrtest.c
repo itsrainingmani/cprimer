@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 
 void somefunc(char *a);
+void testfunc(char *name, double (*func_ptr)());
 
 int main()
 {
@@ -25,6 +27,24 @@ int main()
 
   char ch;
   ch = "Life, the Universe, & Everything"[0]; // ch has the value "L"
+
+  int (*func_ptr)();
+  func_ptr = printf;
+  (*func_ptr)("Printf is here!\n");
+
+  testfunc("square root", sqrt);
+}
+
+void testfunc(char *name, double (*func_ptr)())
+{
+  double x, xinc;
+  int c;
+
+  printf("Testing function %s:\n\n", name);
+  for (c = 1; c <= 20; c++)
+  {
+    printf("%d: %f\n", c, (*func_ptr)((double)c));
+  }
 }
 
 void somefunc(char *a)
